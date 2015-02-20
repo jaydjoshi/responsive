@@ -80,7 +80,7 @@
 	//load from DB - devices working 
 	function loadDevicesFromDb()
 	{
-		var URL= "https://api.mongolab.com/api/1/databases/responsive-web_design-testing-tool-devices/collections/devices?apiKey=AydSMDIMXs1y_5qM8s9H2uaygix11-d9";
+		var URL= "https://api.mongolab.com/api/1/databases/responsive-web_design-testing-tool-devices/collections/devices?apiKey=xxxxxxxxxxxxxxxxxxxxxxxxxxxxxx";
 		 $.getJSON( URL, function( data ) {
 			 jsonObject = data;
 			 var text = '<ul class="nav nav-tabs">';
