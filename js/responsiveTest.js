@@ -29,7 +29,7 @@
 	function loadDeviceList()
 	{
 		
-		$.getJSON( "../json/devices.json", function( data ) {
+		$.getJSON( "json/devices.json", function( data ) {
 			 jsonObject = data;
 			 var text = '<ul class="nav nav-tabs">';
 			  $.each( data.supportedDevices, function( key, val ) {
