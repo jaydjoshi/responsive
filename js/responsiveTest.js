@@ -10,20 +10,28 @@
 	function hideLoader(id) {
 	  $('.imageLoader').fadeOut('slow');
 	}
-
+	
+	
+	function clearFrame(){
+		var src = $('#frameId').attr('src');
+		if(src != 'html/blank.html')
+		{
+			$('#frameId').attr('src','html/blank.html');
+		}
+	}
 
 	//load page
 	function loadPage(url)
 	{
-		if ( url.substr(0,7) !== 'http://' && url.substr(0,8) !== 'https://' && url.substr(0, 7) !== 'file://' ) {
+		if ( url != '' && url.substr(0,7) !== 'http://' && url.substr(0,8) !== 'https://' && url.substr(0, 7) !== 'file://' ) {
 			url = 'http://'+url;
 		 }
-		$('iframe').each(function(){showLoader($(this).parent().attr('id'));})
-		$('iframe').data('loaded', false);
-		$('iframe').attr('src', url);
+		/*$('iframe').each(function(){*/showLoader($(this).parent().attr('id'));/*})*/
+		//$('iframe').data('loaded', false);
+		$('#frameId').attr('src', url);
 	}
 
-
+	
 	
 	//load from JSON
 	function loadDeviceList()
@@ -31,7 +39,7 @@
 		
 		$.getJSON( "json/devices.json", function( data ) {
 			 jsonObject = data;
-			 var text = '<ul class="nav nav-tabs">';
+			 var text = '<ul class="nav navbar-nav navbar-center">';
 			  $.each( data.supportedDevices, function( key, val ) {
 				if(key != '_id')
 					{
@@ -72,7 +80,7 @@
 			  text = text + '</ul>';
 			 
 
-			  $('#tabPanelId').html(text);
+			  $('#deviceNav').html(text);
 			
 			});
 	}
@@ -80,10 +88,10 @@
 	//load from DB - devices working 
 	function loadDevicesFromDb()
 	{
-		var URL= "https://api.mongolab.com/api/1/databases/responsive-web_design-testing-tool-devices/collections/devices?apiKey=xxxxxxxxxxxxxxxxxxxxxxxxxxxxxx";
+		var URL= "https://api.mongolab.com/api/1/databases/responsive-web_design-testing-tool-devices/collections/devices?apiKey=AydSMDIMXs1y_5qM8s9H2uaygix11-d9";
 		 $.getJSON( URL, function( data ) {
 			 jsonObject = data;
-			 var text = '<ul class="nav nav-tabs">';
+			 var text = '<ul class="nav navbar-nav navbar-center">';
 			  $.each( data[0].supportedDevices, function( key, val ) {
 				if(key != '_id')
 					{
@@ -124,11 +132,11 @@
 			  text = text + '</ul>';
 			 
 
-			  $('#tabPanelId').html(text);
+			  $('#deviceNav').html(text);
 			
 			}).error(function() {
 				
-				$('#tabPanelId').html('<div class="alert alert-danger" role="alert">Error occured while loading device list from database, <a href="#" class="alert-link" onClick="loadDeviceList()">Click here!</a> to load static list of Devices</div>');					
+				$('#deviceNav').html('<div class="alert alert-danger" role="alert">Error occured while loading device list from database, <a href="#" class="alert-link" onClick="loadDeviceList()">Click here!</a> to load static list of Devices</div>');					
 			});
 
 		
@@ -142,18 +150,16 @@
 		var pixelDensity = $(thisVal).attr('data-pixelDensity');
 		var title = $(thisVal).attr('data-title');
 		
-		$('#deviceDimention1').text(width+' x '+height);
-		$('#deviceDescription1').text(title);
-		$('#deviceDimention2').text(height+' x '+width);
-		$('#deviceDescription2').text(title);
+		$('#deviceDimention').text(width+' x '+height);
+		$('#deviceDescription').text(title);
+		
 		
 		$('#widthText').val(width);
 		$('#widthText').val(height);
 		
 		var newWidth = parseInt(width,10)+17;
-
-		$('#frame1').animate({'width': newWidth, 'height': height},1500);
-		$('#frame2').animate({'width': height, 'height': newWidth},1500);
+		
+		$('#frameId').animate({'width': newWidth, 'height': height},1500);
 		 
 	}
 
@@ -161,6 +167,7 @@
 	//when document loads
 	$(document).ready(function(){
 
+		//loadDeviceList();
 		  loadDevicesFromDb();
 		  loadPage(defaultURL);
 		  
@@ -170,19 +177,40 @@
 
 		  if(qs != '' && qsArray.length > 1){
 		    $('#urlText').val(qs);
+		 //   clearFrame();
 		    loadPage(qs);
 		  }
 
 		  $('form').submit(function(){
+		//	clearFrame();
 			loadPage( $('#urlText').val());
 			return false;
 		  });
 		  
 		  $('iframe').on("load", function () {
-			    // once the iframe is loaded
 			  hideLoader($(this).parent().attr('id'));
-			  $(this).data('loaded',true);
-			});
-
+			 // $(this).data('loaded',true);
+			});	    // once the iframe is loaded
+		
+		  //rotate
+		  $('#deviceOrientation').on("click", function () {
+			  
+			  var width = $('#frameId').css("width");
+			  var height = $('#frameId').css("height");
+			  
+			  var newWidth = parseInt(width,10)-17;
+			  var newHeight = parseInt(height,10);
+			  
+			  //var index = height.indexOf("px");
+			  //var resHeight = height.substring(0,index);
+			  
+			  $('#deviceDimention').text(newHeight+' x '+newWidth);
+			  
+			  newHeight = newHeight+17;
+			  $('#frameId').animate({'width': newHeight, 'height': newWidth},1500);
+			  
+			});	 
+		  
+		
 
 	});
