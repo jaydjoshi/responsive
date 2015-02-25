@@ -16,6 +16,7 @@
 	<meta name="description" content="Responsive design testing tool">
 	<title>Responsive Web Design Testing Tool</title>
 	<link rel="stylesheet" href="css/bootstrap.min.css">
+	<link rel="stylesheet" href="css/animate.css">
 	<link rel="stylesheet" href="css/responsiveTest.css">
 </head>
 <body >
@@ -40,12 +41,23 @@
 	      
 	      <form class="navbar-form navbar-left" role="search">
 	        <div class="input-group">
-	          <input type="text" class="form-control" id="urlText" placeholder="Type the URL here">
+	          <input type="text" class="form-control" id="urlText" oninput="clearFrame()" placeholder="Type the URL here">
 	          <span class="input-group-btn">
 		        <button class="btn btn-default" type="submit">Go!</button>
 		      </span>
+		
+	        </div><!--
+	        <div class="input-group">
+	        	<div class="col-lg-1">
+	          <input type="text" class="form-control" placeholder="W" style="width: 60px;"> 
+	          </div>
 	        </div>
-	      </form>
+	        <div class="input-group">
+	        <div class="col-lg-1">
+	          <input type="text" class="form-control" placeholder="H" style="width: 60px;">
+	          </div>
+	        </div>
+	     --></form>
 	      <ul class="nav navbar-nav navbar-right">
 	      	<li><a href="#" data-toggle="modal" data-target="#myModal">Add Device</a></li>
 	      	<li><a href="#">About</a></li>
@@ -57,28 +69,20 @@
 	<div class="container nopadding">
 	<form method="post">	
 		<div class="row">	
-			<div class="paddingLeft">
-					<div id="tabPanelId" class="text-center"></div>	
+			<div class="col-md-12">
+					<div id="deviceNav"></div>	
 			</div>
 		</div>
 		<div class="row">
 				<div class="text-center">
 					<div id="f1" class="frame" >
-						<h2> <span id="deviceDescription1">iPhone</span></h2> <h4><span id="deviceDimention1"> 320 x 480</span> Portrait <img class="imageLoader" src="http://www.ajaxload.info/cache/FF/FF/FF/00/00/00/5-0.gif" /></h4>
-						<iframe width="320" height="480" id="frame1"></iframe>
+						<h2> <span id="deviceDescription">iPhone</span></h2> <h4><span id="deviceDimention"> 320 x 480</span> <span id="deviceOrientation"><a href="#"> Rotate</a>  </span> <img class="imageLoader" src="image/loader.gif" /></h4>
+						<iframe width="337"  height="480" class="iframeStyle" id="frameId"></iframe>
 					</div>
 				</div>
 		</div>
-		<hr/>
-		<div class="row">
-				<div class="text-center">
-					<div id="f2" class="frame" >
-						<h2> <span id="deviceDescription2">iPhone</span></h2> <h4><span id="deviceDimention2"> 480 x 320</span> Landscape <img class="imageLoader" src="http://www.ajaxload.info/cache/FF/FF/FF/00/00/00/5-0.gif" /></h4>
-						<iframe width="480" height="320" id="frame2"></iframe>
-					</div>
-				</div>
-		</div>
-	</form>
+		
+		</form>
 	</div>
 	
 	
