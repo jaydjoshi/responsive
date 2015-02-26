@@ -31,7 +31,7 @@
 		$('#frameId').attr('src', url);
 	}
 
-	
+
 	
 	//load from JSON
 	function loadDeviceList()
@@ -39,7 +39,7 @@
 		
 		$.getJSON( "json/devices.json", function( data ) {
 			 jsonObject = data;
-			 var text = '<ul class="nav navbar-nav navbar-center">';
+			 var text = '<ul class="nav nav-justified">';
 			  $.each( data.supportedDevices, function( key, val ) {
 				if(key != '_id')
 					{
@@ -47,10 +47,12 @@
 						  text = text + '<li role="presentation" class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-expanded="false"> ';
 						  text = text + val.title;
 						  text = text + '<span class="caret"></span> </a> <ul class="dropdown-menu" role="menu">';
+						  var deviceName = val.title;
 						if(val.brands !== null && typeof val.brands === 'object')
 						{
 							$.each( val.brands, function( key, val ) {
 								text = text + '<li role="presentation" class="dropdown-header">'+val.name+'</li>';
+								
 								if(val !== null && typeof val === 'object')
 								{
 									$.each( val, function( key, val ) {
@@ -62,7 +64,7 @@
 												var width , height;
 												width = Math.round(val.w/pixelDensity);
 												height = Math.round(val.h/pixelDensity);
-												text = text + '<li role="presentation"><a href="javascript:void(0)" class="deviceListClass" onClick="clickOnDevice(this)" data-width="'+width+'" data-height="'+height+'" data-title="'+val.name+'" data-inch="'+val.inch+'" data-pixelDensity="'+pixelDensity+'" >';
+												text = text + '<li role="presentation"><a href="javascript:void(0)" class="deviceListClass" onClick="clickOnDevice(this)" data-width="'+width+'" data-height="'+height+'" data-title="'+val.name+'" data-inch="'+val.inch+'" data-device="'+deviceName+'" data-pixelDensity="'+pixelDensity+'" >';
 												text = text + val.name;
 												text = text + '</a></li>';
 										});
@@ -82,7 +84,10 @@
 
 			  $('#deviceNav').html(text);
 			
-			});
+			}).done(function() {
+				clickOnDevice($('#deviceNav ul li ul li a:first'));
+				loadPage(defaultURL);
+			  });
 	}
 
 	//load from DB - devices working 
@@ -91,7 +96,7 @@
 		var URL= "https://api.mongolab.com/api/1/databases/responsive-web_design-testing-tool-devices/collections/devices?apiKey=AydSMDIMXs1y_5qM8s9H2uaygix11-d9";
 		 $.getJSON( URL, function( data ) {
 			 jsonObject = data;
-			 var text = '<ul class="nav navbar-nav navbar-center">';
+			 var text = '<ul class="nav nav-justified">';
 			  $.each( data[0].supportedDevices, function( key, val ) {
 				if(key != '_id')
 					{
@@ -99,10 +104,12 @@
 						  text = text + '<li role="presentation" class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-expanded="false"> ';
 						  text = text + val.title;
 						  text = text + '<span class="caret"></span> </a> <ul class="dropdown-menu" role="menu">';
+						  var deviceName = val.title;
 						if(val.brands !== null && typeof val.brands === 'object')
 						{
 							$.each( val.brands, function( key, val ) {
 								text = text + '<li role="presentation" class="dropdown-header">'+val.name+'</li>';
+								
 								if(val !== null && typeof val === 'object')
 								{
 									$.each( val, function( key, val ) {
@@ -114,7 +121,7 @@
 												var width , height;
 												width = Math.round(val.w/pixelDensity);
 												height = Math.round(val.h/pixelDensity);
-												text = text + '<li role="presentation"><a href="javascript:void(0)" class="deviceListClass" onClick="clickOnDevice(this)" data-width="'+width+'" data-height="'+height+'" data-title="'+val.name+'" data-inch="'+val.inch+'" data-pixelDensity="'+pixelDensity+'" >';
+												text = text + '<li role="presentation"><a href="javascript:void(0)" class="deviceListClass" onClick="clickOnDevice(this)" data-width="'+width+'" data-height="'+height+'" data-title="'+val.name+'" data-inch="'+val.inch+'" data-device="'+deviceName+'" data-pixelDensity="'+pixelDensity+'" >';
 												text = text + val.name;
 												text = text + '</a></li>';
 										});
@@ -134,7 +141,11 @@
 
 			  $('#deviceNav').html(text);
 			
-			}).error(function() {
+			}).done(function() {
+				clickOnDevice($('#deviceNav ul li ul li a:first'));
+				loadPage(defaultURL);
+			  })
+			  .error(function() {
 				
 				$('#deviceNav').html('<div class="alert alert-danger" role="alert">Error occured while loading device list from database, <a href="#" class="alert-link" onClick="loadDeviceList()">Click here!</a> to load static list of Devices</div>');					
 			});
@@ -147,6 +158,7 @@
 	{
 		var width = $(thisVal).attr('data-width');
 		var height = $(thisVal).attr('data-height');
+		var device = $(thisVal).attr('data-device');
 		var pixelDensity = $(thisVal).attr('data-pixelDensity');
 		var title = $(thisVal).attr('data-title');
 		
@@ -154,11 +166,21 @@
 		$('#deviceDescription').text(title);
 		
 		
-		$('#widthText').val(width);
-		$('#widthText').val(height);
+		//$('#widthText').val(width);
+		//$('#widthText').val(height);
+		
+		if(device == "Laptop" || device == "Desktop")
+		{
+			$('#deviceOrientation').attr('class','hide');
+		}
+		if(device == "Phone" || device == "Tablet")
+		{
+			$('#deviceOrientation').attr('class','show');
+		}
 		
 		var newWidth = parseInt(width,10)+17;
 		
+		$('#frameDiv').attr('class','show text-center');
 		$('#frameId').animate({'width': newWidth, 'height': height},1500);
 		 
 	}
@@ -167,9 +189,9 @@
 	//when document loads
 	$(document).ready(function(){
 
-		//loadDeviceList();
+		
 		  loadDevicesFromDb();
-		  loadPage(defaultURL);
+		  //loadPage(defaultURL);
 		  
 		  //query string
 		  var qsArray = window.location.href.split('?');
