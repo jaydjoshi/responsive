@@ -18,6 +18,7 @@
 	<link rel="stylesheet" href="css/bootstrap.min.css">
 	<link rel="stylesheet" href="css/animate.css">
 	<link rel="stylesheet" href="css/responsiveTest.css">
+	<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
 </head>
 <body >
 
@@ -74,12 +75,24 @@
 			</div>
 		</div>
 		<div class="row">
-				<div class="text-center">
-					<div id="f1" class="frame" >
-						<h2> <span id="deviceDescription">iPhone</span></h2> <h4><span id="deviceDimention"> 320 x 480</span> <span id="deviceOrientation"><a href="#"> Rotate</a>  </span> <img class="imageLoader" src="image/loader.gif" /></h4>
-						<iframe width="337"  height="480" class="iframeStyle" id="frameId"></iframe>
+			<div class="col-md-6 col-md-offset-3">
+				<div class="row">
+					<div class="col-md-9">
+						<h2> <span id="deviceDescription"></span> <small><span id="deviceDimention"> </span></small>  <img class="imageLoader" src="image/loader.gif" /></h2>  
+					</div>
+					<div class="col-md-3">
+						<h2 class="text-right"> <span id="deviceOrientation" class="hide"><a href="#" class="btn btn-primary"><i class="fa fa-retweet"></i> Rotate</a>  </span></h2>
 					</div>
 				</div>
+				<div class="row"><hr/></div>
+			</div>
+
+		</div>
+			
+		<div class="row">	
+			<div id="frameDiv" class="hide">
+					<iframe class="iframeStyle" id="frameId"></iframe>
+			</div>
 		</div>
 		
 		</form>
