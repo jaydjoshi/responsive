@@ -32,3 +32,11 @@ margin-bottom : 0px;
 .iframeStyle{
 border: 2px #f5f5f5 solid;
 }
+
+hr{
+ margin-top: 0px; 
+}
+#frameDiv{
+    overflow-x: auto;
+    overflow-y: hidden;
+}
