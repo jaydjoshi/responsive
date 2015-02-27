@@ -11,23 +11,14 @@
 	  $('.imageLoader').fadeOut('slow');
 	}
 	
-	
-	function clearFrame(){
-		var src = $('#frameId').attr('src');
-		if(src != 'html/blank.html')
-		{
-			$('#frameId').attr('src','html/blank.html');
-		}
-	}
 
-	//load page
+	//load page for a specific URL
 	function loadPage(url)
 	{
 		if ( url != '' && url.substr(0,7) !== 'http://' && url.substr(0,8) !== 'https://' && url.substr(0, 7) !== 'file://' ) {
 			url = 'http://'+url;
 		 }
-		/*$('iframe').each(function(){*/showLoader($(this).parent().attr('id'));/*})*/
-		//$('iframe').data('loaded', false);
+		showLoader($(this).parent().attr('id'));
 		$('#frameId').attr('src', url);
 	}
 
@@ -84,13 +75,24 @@
 
 			  $('#deviceNav').html(text);
 			
-			}).done(function() {
+			}).done(function() { //Second success method
+				//set i frame properties to the first device from the list
 				clickOnDevice($('#deviceNav ul li ul li a:first'));
-				loadPage(defaultURL);
+				var textVal = $('#urlText').val();
+				if(textVal == '')
+				{
+					$('#urlText').val(defaultURL);
+					loadPage(defaultURL);
+				}
+				else{
+					$('#urlText').val(textVal);
+					loadPage(textVal);
+				}
+				
 			  });
 	}
 
-	//load from DB - devices working 
+	//load from DB - devices 
 	function loadDevicesFromDb()
 	{
 		var URL= "https://api.mongolab.com/api/1/databases/responsive-web_design-testing-tool-devices/collections/devices?apiKey=AydSMDIMXs1y_5qM8s9H2uaygix11-d9";
@@ -141,19 +143,29 @@
 
 			  $('#deviceNav').html(text);
 			
-			}).done(function() {
+			}).done(function() { //Second success method
+				//set i frame properties to the first device from the list
 				clickOnDevice($('#deviceNav ul li ul li a:first'));
-				loadPage(defaultURL);
-			  })
-			  .error(function() {
+				var textVal = $('#urlText').val();
+				if(textVal == '')
+				{
+					$('#urlText').val(defaultURL);
+					loadPage(defaultURL);
+				}
+				else{
+					$('#urlText').val(textVal);
+					loadPage(textVal);
+				}
 				
+			  })
+			  .error(function() { //call on error
 				$('#deviceNav').html('<div class="alert alert-danger" role="alert">Error occured while loading device list from database, <a href="#" class="alert-link" onClick="loadDeviceList()">Click here!</a> to load static list of Devices</div>');					
 			});
 
 		
 	}
 	
-	
+	//on click of device
 	function clickOnDevice(thisVal)
 	{
 		var width = $(thisVal).attr('data-width');
@@ -164,10 +176,6 @@
 		
 		$('#deviceDimention').text(width+' x '+height);
 		$('#deviceDescription').text(title);
-		
-		
-		//$('#widthText').val(width);
-		//$('#widthText').val(height);
 		
 		if(device == "Laptop" || device == "Desktop")
 		{
@@ -189,9 +197,7 @@
 	//when document loads
 	$(document).ready(function(){
 
-		
 		  loadDevicesFromDb();
-		  //loadPage(defaultURL);
 		  
 		  //query string
 		  var qsArray = window.location.href.split('?');
@@ -199,22 +205,30 @@
 
 		  if(qs != '' && qsArray.length > 1){
 		    $('#urlText').val(qs);
-		 //   clearFrame();
 		    loadPage(qs);
 		  }
 
+		  //click of go or enter
 		  $('form').submit(function(){
-		//	clearFrame();
 			loadPage( $('#urlText').val());
 			return false;
 		  });
 		  
+		// once the iframe is loaded
 		  $('iframe').on("load", function () {
 			  hideLoader($(this).parent().attr('id'));
-			 // $(this).data('loaded',true);
-			});	    // once the iframe is loaded
+			});	    
+		  
+		  // will clear frame
+		  $('#urlText').on("input", function () {
+			  var src = $('#frameId').attr('src');
+				if(src != 'html/blank.html')
+				{
+					$('#frameId').attr('src','html/blank.html');
+				}
+			});
 		
-		  //rotate
+		  //rotate functionality
 		  $('#deviceOrientation').on("click", function () {
 			  
 			  var width = $('#frameId').css("width");
@@ -222,9 +236,6 @@
 			  
 			  var newWidth = parseInt(width,10)-17;
 			  var newHeight = parseInt(height,10);
-			  
-			  //var index = height.indexOf("px");
-			  //var resHeight = height.substring(0,index);
 			  
 			  $('#deviceDimention').text(newHeight+' x '+newWidth);
 			  
