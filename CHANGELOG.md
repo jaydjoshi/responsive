@@ -5,5 +5,6 @@ v1.0
 v1.1
 
 * Changed UI
+* Changed name
 * Bug Fixes
 * Added rotate functionality
