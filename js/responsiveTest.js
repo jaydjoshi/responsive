@@ -36,13 +36,17 @@
 					{
 						
 						  text = text + '<li role="presentation" class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-expanded="false"> ';
+						  text = text + '<i class="fa '+val.icon+'"></i> ';
 						  text = text + val.title;
-						  text = text + '<span class="caret"></span> </a> <ul class="dropdown-menu" role="menu">';
+						  text = text + ' <span class="caret"></span> </a> <ul class="dropdown-menu" role="menu">';
 						  var deviceName = val.title;
+						  var key1 = key;
 						if(val.brands !== null && typeof val.brands === 'object')
 						{
 							$.each( val.brands, function( key, val ) {
-								text = text + '<li role="presentation" class="dropdown-header">'+val.name+'</li>';
+								text = text + '<li role="presentation" class="dropdown-header"><a class="dropdown-toggle" data-toggle="dropdown" data-target="#device'+key1+key+'" href="#" aria-expanded="false"> ';
+								text = text + val.name;
+								text = text + ' <span class="caret"></span> </a> <ul id="device'+key1+key+'" class="dropdown-menu" aria-expanded="false"  >';
 								
 								if(val !== null && typeof val === 'object')
 								{
@@ -55,7 +59,7 @@
 												var width , height;
 												width = Math.round(val.w/pixelDensity);
 												height = Math.round(val.h/pixelDensity);
-												text = text + '<li role="presentation"><a href="javascript:void(0)" class="deviceListClass" onClick="clickOnDevice(this)" data-width="'+width+'" data-height="'+height+'" data-title="'+val.name+'" data-inch="'+val.inch+'" data-device="'+deviceName+'" data-pixelDensity="'+pixelDensity+'" >';
+												text = text + '<li role="presentation"><a href="javascript:void(0)" onClick="clickOnDevice(this)" data-width="'+width+'" data-height="'+height+'" data-title="'+val.name+'" data-inch="'+val.inch+'" data-device="'+deviceName+'" data-pixelDensity="'+pixelDensity+'" >';
 												text = text + val.name;
 												text = text + '</a></li>';
 										});
@@ -63,7 +67,7 @@
 										}
 									});
 									
-								}
+								}text = text + '</ul></li>';
 							
 							});
 							text = text + '</ul></li>';
@@ -77,7 +81,7 @@
 			
 			}).done(function() { //Second success method
 				//set i frame properties to the first device from the list
-				clickOnDevice($('#deviceNav ul li ul li a:first'));
+				clickOnDevice($('#deviceNav a[data-device]:first'));
 				var textVal = $('#urlText').val();
 				if(textVal == '')
 				{
@@ -91,6 +95,7 @@
 				
 			  });
 	}
+	
 
 	//load from DB - devices 
 	function loadDevicesFromDb()
@@ -104,13 +109,17 @@
 					{
 						
 						  text = text + '<li role="presentation" class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-expanded="false"> ';
+						  text = text + '<i class="fa '+val.icon+'"></i> ';
 						  text = text + val.title;
-						  text = text + '<span class="caret"></span> </a> <ul class="dropdown-menu" role="menu">';
+						  text = text + ' <span class="caret"></span> </a> <ul class="dropdown-menu" role="menu">';
 						  var deviceName = val.title;
+						  var key1 = key;
 						if(val.brands !== null && typeof val.brands === 'object')
 						{
 							$.each( val.brands, function( key, val ) {
-								text = text + '<li role="presentation" class="dropdown-header">'+val.name+'</li>';
+								text = text + '<li role="presentation" class="dropdown-header"><a class="dropdown-toggle" data-toggle="dropdown" data-target="#device'+key1+key+'" href="#" aria-expanded="false"> ';
+								text = text + val.name;
+								text = text + ' <span class="caret"></span> </a> <ul id="device'+key1+key+'" class="dropdown-menu" aria-expanded="false"  >';
 								
 								if(val !== null && typeof val === 'object')
 								{
@@ -123,7 +132,7 @@
 												var width , height;
 												width = Math.round(val.w/pixelDensity);
 												height = Math.round(val.h/pixelDensity);
-												text = text + '<li role="presentation"><a href="javascript:void(0)" class="deviceListClass" onClick="clickOnDevice(this)" data-width="'+width+'" data-height="'+height+'" data-title="'+val.name+'" data-inch="'+val.inch+'" data-device="'+deviceName+'" data-pixelDensity="'+pixelDensity+'" >';
+												text = text + '<li role="presentation"><a href="javascript:void(0)" onClick="clickOnDevice(this)" data-width="'+width+'" data-height="'+height+'" data-title="'+val.name+'" data-inch="'+val.inch+'" data-device="'+deviceName+'" data-pixelDensity="'+pixelDensity+'" >';
 												text = text + val.name;
 												text = text + '</a></li>';
 										});
@@ -131,7 +140,7 @@
 										}
 									});
 									
-								}
+								}text = text + '</ul></li>';
 							
 							});
 							text = text + '</ul></li>';
@@ -145,7 +154,7 @@
 			
 			}).done(function() { //Second success method
 				//set i frame properties to the first device from the list
-				clickOnDevice($('#deviceNav ul li ul li a:first'));
+				clickOnDevice($('#deviceNav a[data-device]:first'));
 				var textVal = $('#urlText').val();
 				if(textVal == '')
 				{
