@@ -40,3 +40,10 @@ hr{
     overflow-x: auto;
     overflow-y: hidden;
 }
+
+ul.dropdown-menu li.dropdown-header:hover > ul.dropdown-menu {
+    display: block;
+	left: 90%;
+	margin-top: -20px;
+	cursor: pointer;
+}
