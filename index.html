@@ -6,7 +6,7 @@
     /**
      * ResponsiveTest
      *
-     * @link        https://github.com/jaydjoshi/Responsive-Web-Design-Testing-Tool
+     * @link        https://github.com/jaydjoshi/Responsive-Master
      * @author      Jay Joshi
      * @copyright   (c) 2015 Jay Joshi
      */
@@ -14,9 +14,12 @@
 	
 	<meta charset="utf-8">
 	<meta name="description" content="Responsive Test Master">
-	<title>Responsive Master</title>
+	<title>Responsive Master | Responsive Web Design Testing Tool</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Responsive Test Master : Test responsive Web Design in various device sizes">
+    <meta name="keywords" content="responsive web design test, responsive web design, responsive design testing, responsive web design testing, responsive web design tools,responsive web design testing tools, HTML5, CSS3, RWD, RWD testing, RWD test">
+    <meta name="author" content="Jay Joshi (@jaydjoshi)">
 	<link rel="stylesheet" href="css/bootstrap.min.css">
-	<link rel="stylesheet" href="css/animate.css">
 	<link rel="stylesheet" href="css/responsiveTest.css">
 	<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
 </head>
@@ -60,8 +63,8 @@
 	        </div>
 	     --></form>
 	      <ul class="nav navbar-nav navbar-right">
-	      	<li><a href="#" data-toggle="modal" data-target="#myModal">Add Device</a></li>
-	      	<li><a href="#">About</a></li>
+	      	<!--<li><a href="javascript:void(0)" data-toggle="modal" data-target="#Modal">Add Device</a></li>
+	      	--><li><a href="#" data-toggle="modal" data-target="#aboutModal">About</a></li>
 	      </ul>
 	    </div><!-- /.navbar-collapse -->
 	  </div><!-- /.container-fluid -->
@@ -77,10 +80,10 @@
 			<div class="col-md-6 col-md-offset-3">
 				<div class="row">
 					<div class="col-md-9">
-						<h2> <span id="deviceDescription"></span> <small><span id="deviceDimention">Loading, Please wait...   </span></small>  <span class="imageLoader"> <i class="fa fa-circle-o-notch fa-spin"></i></span></h2>  
+						<h2> <span id="deviceDescription"></span> <small><span id="deviceDimention">Loading, Please wait...   </span></small>  <!--<img class="imageLoader" src="image/loader.gif" />--> <span class="imageLoader"> <i class="fa fa-circle-o-notch fa-spin"></i></span></h2>  
 					</div>
 					<div class="col-md-3">
-						<h2 class="text-right"> <span id="deviceOrientation" class="hide"><a href="#" class="btn btn-primary"><i class="fa fa-retweet"></i> Rotate</a>  </span></h2>
+						<h2 class="text-right"> <span id="deviceOrientation" class="hide"><a href="javascript:void(0)" class="btn btn-primary"><i class="fa fa-retweet"></i> Rotate</a>  </span></h2>
 					</div>
 				</div>
 				<div class="row"><hr/></div>
@@ -96,12 +99,34 @@
 	</div>
 	
 	
-	<footer class="footer">
+	<!--<footer class="footer">
 	      <div class="container">
-	        <p class="text-muted">Responsive Web Design Testing Tool developed by Jay Joshi, 2015</p>
+	        <p class="text-muted">Responsive Master developed by Jay Joshi, 2015</p>
 	      </div>
 	 </footer>
-	 
+	     -->
+	   <footer class="footer">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6">
+                    <span class="copyright">Copyright &copy; Responsive Master developed by Jay Joshi, 2015</span>
+                </div>
+                <div class="col-md-6">
+                    <ul class="list-inline social-buttons text-center">
+                        <li><a href="javascript:void(0)"><i class="fa fa-twitter"></i></a>
+                        </li>
+                        <li><a href="javascript:void(0)"><i class="fa fa-facebook"></i></a>
+                        </li>
+                        <li><a href="javascript:void(0)"><i class="fa fa-linkedin"></i></a>
+                        </li>
+                        <li><a href="javascript:void(0)"><i class="fa fa-github"></i></a>
+                        </li>
+                    </ul>
+                </div>
+                
+            </div>
+        </div>
+    </footer>
 	 
 		 <!-- Modal -->
 	<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
@@ -116,11 +141,76 @@
 	      </div>
 	      <div class="modal-footer">
 	        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-	        <button type="button" class="btn btn-primary">Save changes</button>
+	        <button type="button" class="btn btn-primary" >Save changes</button>
 	      </div>
 	    </div>
 	  </div>
 	</div>
+	
+	<div class="about-modal modal fade" id="aboutModal" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-content">
+            <div class="close-modal" data-dismiss="modal">
+                <div class="lr">
+                    <div class="rl">
+                    </div>
+                </div>
+            </div>
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-8 col-lg-offset-2">
+                        <div class="modal-body">
+                            <h2>About Us <small>Responsive Master</small></h2>
+                            <img src="image/rwd.jpg" class="img-responsive img-centered" alt="Responsive Web Design">
+                            <p><strong>Responsive Master</strong> is a web based emulator which displays the behavior and layout of a website in different devices i.e. mobile, tablet, laptop and desktop in the browser. </p>
+				 			<p>This tool is built to to show you how visual elements of your site respond to different screen sizes and enables user to view website UI in various devices on a single page. </p>
+							<p>This tool helps website makers quickly get an indication of how their responsive site will look on the most popular devices. </p>
+							<p>I have added 17px to the width of the device to cater for the scroll bar. </p>
+							
+							<div class="panel panel-default">
+							  <!-- Default panel contents -->
+							  <div class="panel-header">
+							  <p> <b>Steps on how to use Responsive Master?</b></p>
+							  </div>
+							
+							  <!-- List group -->
+							  <ol class="list-group">
+							    <li class="list-group-item">Enter URL of the website in the test box at the top</li>
+							    <li class="list-group-item">Click on Go!</li>
+							    <li class="list-group-item">Website will be loaded in a device (iPhone) which is the default device</li>
+							    <li class="list-group-item">Change the device from the dropdowns Phone, Tablet, Laptop, Desttop</li>
+							    <li class="list-group-item">To change the Device Orientation ( Portrait/ Landscape view ) click on Rotate button</li>
+							  </ol>
+							 
+							</div>
+							 
+							 <p>If a blank page is displayed in the device it means the website has a restriction by setting <code>X-Frame-Options to SAMEORIGIN or DENY</code>, You can download a Google chrome extension <a href="https://chrome.google.com/webstore/detail/ignore-x-frame-headers/gleekbfjekiniecknbkamfmkohkpodhe">Ignore X Frame headers</a> which will bypass the x-frame-options header and allow any website to work in Responsive Master. </p>
+                			<br/>
+                			<h2>About Us <small>Team</small></h2><br/>
+                			<div class="team">
+		                        <img src="http://placehold.it/200x200" class="img-responsive img-circle center-block" alt="Jay Joshi">
+		                        <h3>Jay Joshi</h3>
+		                        <p class="text-muted">Developer/Designer</p>
+		                        <p>I am passionate about Java, front end development and open source technologies, also like to learn and explore new technologies/framework. I am a huge Foodie and like to travel.</p>
+		                        <ul class="list-inline social-buttons">
+		                            <li><a href="#"><i class="fa fa-twitter"></i></a>
+		                            </li>
+		                            <li><a href="#"><i class="fa fa-facebook"></i></a>
+		                            </li>
+		                            <li><a href="#"><i class="fa fa-linkedin"></i></a>
+		                            </li>
+		                            <li><a href="#"><i class="fa fa-github"></i></a>
+                       				</li>
+		                        </ul>
+		                    </div>
+                			
+                            <button type="button" class="btn btn-primary" data-dismiss="modal"><i class="fa fa-times"></i> Close</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+	
 	
 	<script src="js/jquery-1.11.2.min.js"></script>
 	<script src="js/bootstrap.min.js"></script>
