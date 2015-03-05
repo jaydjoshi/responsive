@@ -93,11 +93,13 @@
 					loadPage(textVal);
 				}
 				
-			  });
+			  }).error(function() { //call on error
+					$('#deviceNav').html('<div class="alert alert-danger" role="alert">Error occured while loading device list, Please reload the screen or try again later</div>');					
+				});
 	}
 	
 
-	//load from DB - devices 
+	/*//load from DB - devices 
 	function loadDevicesFromDb()
 	{
 		var URL= "https://api.mongolab.com/api/1/databases/responsive-web_design-testing-tool-devices/collections/devices?apiKey=AydSMDIMXs1y_5qM8s9H2uaygix11-d9";
@@ -172,7 +174,7 @@
 			});
 
 		
-	}
+	}*/
 	
 	//on click of device
 	function clickOnDevice(thisVal)
@@ -201,13 +203,14 @@
 		$('#frameId').animate({'width': newWidth, 'height': height},1500);
 		 
 	}
-
+	
 
 	//when document loads
 	$(document).ready(function(){
 
-		  loadDevicesFromDb();
-		  
+		  //loadDevicesFromDb();
+			// load devices when screen is loaded
+			loadDeviceList();
 		  //query string
 		  var qsArray = window.location.href.split('?');
 		  var qs = qsArray[qsArray.length-1];
