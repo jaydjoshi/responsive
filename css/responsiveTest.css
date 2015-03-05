@@ -47,3 +47,117 @@ ul.dropdown-menu li.dropdown-header:hover > ul.dropdown-menu {
 	margin-top: -20px;
 	cursor: pointer;
 }
+
+
+ol li.list-group-item { 
+    list-style: decimal inside;
+    display: list-item;
+}
+
+
+.about-modal .modal-content {
+    padding: 75px 0;
+    min-height: 100%;
+    border: 0;
+    text-align: center;
+    border-radius: 0;
+    background-clip: border-box;
+    -webkit-box-shadow: none;
+    box-shadow: none;
+}
+
+.about-modal .modal-content h2 {
+    margin-bottom: 15px;
+    font-size: 3em;
+}
+
+.about-modal .modal-content p {
+    margin-bottom: 30px;
+}
+
+.about-modal .modal-content p.item-intro {
+    margin: 20px 0 30px;
+    font-size: 16px;
+    font-style: italic;
+}
+
+.about-modal .modal-content ul.list-inline {
+    margin-top: 0;
+    margin-bottom: 30px;
+}
+
+.about-modal .modal-content img {
+    margin-bottom: 30px;
+}
+
+.about-modal .close-modal {
+    position: absolute;
+    top: 25px;
+    right: 25px;
+    width: 50px;
+    height: 50px;
+    background-color: transparent;
+    cursor: pointer;
+}
+
+.about-modal .close-modal:hover {
+    opacity: .3;
+}
+
+.about-modal .close-modal .lr {
+    z-index: 1051;
+    width: 1px;
+    height: 50px;
+    margin-left: 35px;
+    background-color: #222;
+    -webkit-transform: rotate(45deg);
+    -ms-transform: rotate(45deg);
+    transform: rotate(45deg);
+}
+
+.about-modal .close-modal .lr .rl {
+    z-index: 1052;
+    width: 1px;
+    height: 50px;
+    background-color: #222;
+    -webkit-transform: rotate(90deg);
+    -ms-transform: rotate(90deg);
+    transform: rotate(90deg);
+}
+
+.about-modal .modal-backdrop {
+    display: none;
+    opacity: 0;
+}
+
+.about-modal .panel{
+	text-align: left;
+}
+
+.about-modal .list-group-item{
+	border: 0;
+}
+
+.about-modal .panel{
+	border: 0;
+}
+
+.team {
+	margin-bottom: 50px;
+	text-align: center;
+}
+
+ul.social-buttons li a {
+	display: block;
+	width: 30px;
+	height: 30px;
+	border-radius: 100%;
+	font-size: 15px;
+	line-height: 30px;
+	outline: 0;
+	color: #fff;
+	background-color: #222;
+	-webkit-transition: all .3s;
+	-moz-transition: all .3s;
+	transition: all .3s;
+}
