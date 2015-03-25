@@ -256,6 +256,18 @@
 			  
 			});	 
 		  
+		  $('#width').on("change keyup paste", function(){
+			  width =  $('#width').val();
+			  if(width!=0 || width!=null)
+			  $('#frameId').animate({'width': width},500);
+			  
+		  });
+		  $('#height').on("change keyup paste", function(){
+			  height =  $('#height').val();
+			  if(height!=0 || height!=null)
+			  $('#frameId').animate({'height': height},500);
+			  
+		  });
 		
 
 	});
