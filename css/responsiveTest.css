@@ -15,7 +15,10 @@ body
 	  width: 100%;
 	  /* Set the fixed height of the footer here */
 	  height: 50px;
-	  background-color: #f5f5f5;
+	  border-top-width: thin;
+	  border-top-style: ridge;
+	  border-bottom-color: black;
+	  padding-top: 25px;
 }
 .nopadding {
    padding: 0 !important;
@@ -160,4 +163,8 @@ ul.social-buttons li a {
 	-webkit-transition: all .3s;
 	-moz-transition: all .3s;
 	transition: all .3s;
+}
+
+.greyColor{
+	color: #9d9d9d;
 }
