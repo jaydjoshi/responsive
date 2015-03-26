@@ -259,7 +259,10 @@
 		  $('#width').on("change keyup paste", function(){
 			  width =  $('#width').val();
 			  if(width!=0 || width!=null)
-			  $('#frameId').animate({'width': width},500);
+			  {
+				  var newWidth = parseInt(width,10)+17;
+				  $('#frameId').animate({'width': newWidth},500);
+			  }
 			  
 		  });
 		  $('#height').on("change keyup paste", function(){
