@@ -352,7 +352,7 @@
 				OS = getOperatingSystem();
 				//insert ajax to mongoDB
 				$.ajax( { url: "https://api.mongolab.com/api/1/databases/responsive-web_design-testing-tool-devices/collections/responsiveMasterAnalytics?apiKey=AydSMDIMXs1y_5qM8s9H2uaygix11-d9",
-					  data: JSON.stringify( { "Date" : date , "IP" : ip , "BrowserName" : browserName , "ScreenSize" : screenSize , "OS" : OS } ),
+					  data: JSON.stringify( { "Date" : date , "IP" : ip , "BrowserName" : browserName , "ScreenSize" : screenSize , "OS" : OS , "Location" : "www.responsivemaster.com" } ),
 					  type: "POST",
 					  contentType: "application/json" } );
 		  });
