@@ -274,3 +274,89 @@
 		
 
 	});
+	
+	
+	//functions to retrive users info
+	function getDateAndTime()
+	{
+		return new Date($.now());
+	}
+	
+	function getScreenSize()
+	{
+		return window.screen.width +" x "+ window.screen.height;
+	}
+	
+/*	function getIpAddress()
+	{
+		var ipC;
+		$.get("http://ipinfo.io", function(response) {
+			ipC = response.ip;
+			console.log(" 1."+ipC);
+		}, "jsonp");
+		
+		console.log(" 2."+ipC);
+		$.get("http://ipinfo.io", function(response) {
+			 ip = response.ip;
+		    country = response.country;
+		    city = response.city;
+		}, "jsonp");
+		return{
+			ip : ip ,
+			country : country ,
+			city :city
+		};
+	}*/
+	
+	function displayIp(){
+		return result.ip;
+	}
+	
+	function getBrowserName()
+	{
+		 var ua=navigator.userAgent,tem,M=ua.match(/(opera|chrome|safari|firefox|msie|trident(?=\/))\/?\s*(\d+)/i) || []; 
+		    if(/trident/i.test(M[1])){
+		        	tem=/\brv[ :]+(\d+)/g.exec(ua) || []; 
+		        	return {name:'IE ',version:(tem[1]||'')};
+		        }   
+		    if(M[1]==='Chrome'){
+		        tem=ua.match(/\bOPR\/(\d+)/);
+			    if(tem!=null){
+			       	return {name:'Opera', version:tem[1]};}
+			    }
+		    M=M[2] ? [M[1], M[2]]: [navigator.appName, navigator.appVersion, '-?'];
+		    if((tem=ua.match(/version\/(\d+)/i))!=null) {
+		    		M.splice(1,1,tem[1]);
+		    	}
+		    return {
+		      name: M[0],
+		      version: M[1]
+		    };
+	}
+	
+	function getOperatingSystem()
+	{
+		return navigator.platform;
+	}
+
+	
+	$(document).ready(function(){
+		var ipC;
+		ipC = $.get("http://ipinfo.io", function(response) {
+			result = response;
+			ip = displayIp();
+		}, "jsonp").always(function() { //Second success method
+				date = getDateAndTime();
+				screenSize = getScreenSize();
+				browserName= getBrowserName();
+				OS = getOperatingSystem();
+				//insert ajax to mongoDB
+				$.ajax( { url: "https://api.mongolab.com/api/1/databases/responsive-web_design-testing-tool-devices/collections/responsiveMasterAnalytics?apiKey=AydSMDIMXs1y_5qM8s9H2uaygix11-d9",
+					  data: JSON.stringify( { "Date" : date , "IP" : ip , "BrowserName" : browserName , "ScreenSize" : screenSize , "OS" : OS } ),
+					  type: "POST",
+					  contentType: "application/json" } );
+		  });
+		
+	});
+
+	
